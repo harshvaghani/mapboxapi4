@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to our page</title>
+    <script src="https://kit.fontawesome.com/575f839daa.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="new6.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Map chat</h1>
+        <div class="head">
+            <i class="fa fa-envelope"></i>
+        </div>
+        <div class="box">
+            <input type="text" name="text" id="email" placeholder="Email" onchange="myFunction()">
+        </div>
+        <div class="head">
+            <i class="fa fa-lock"></i>
+        </div>
+        <div class="box">
+            <input type="password" name="password" id="password" placeholder="Password">
+        </div>
+        <input type="button" value="Submit" id="btn" onclick="ok()">
+    </div>
+</body>
+<script>
+    function myFunction() {
+        var x = document.getElementById("email");
+        x.value = x.value.toLowerCase();
+    }
+    var btn = document.getElementById('btn');
+    var y = document.getElementById('email');
+
+    function ok() {
+        window.open("harsh.html");
+    }
+</script>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Use a custom render function with a geocoder</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+    <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <style>
+        .geocoder-dropdown-item {
+            padding: 5px;
+        }
+        
+        .geocoder-dropdown-icon {
+            margin-right: 10px;
+        }
+        
+        .geocoder-dropdown-text {
+            color: #5a3fc0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+    </style>
+    <div id="map"></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyc2h2YWdoYW5pIiwiYSI6ImNrOWh5bDBwbTAydWQzb21ndWlrajE0aHgifQ.LOlWyyrPZGaSDXj7iKfPsg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [-79.4512, 43.6568],
+            zoom: 13
+        });
+
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            types: 'poi',
+            // see https://docs.mapbox.com/api/search/#geocoding-response-object for information about the schema of each response feature
+            render: function(item) {
+                // extract the item's maki icon or use a default
+                var maki = item.properties.maki || 'marker';
+                return (
+                    "<div class='geocoder-dropdown-item'><img class='geocoder-dropdown-icon' src='https://unpkg.com/@mapbox/maki@6.1.0/icons/" +
+                    maki +
+                    "-15.svg'><span class='geocoder-dropdown-text'>" +
+                    item.text +
+                    '</span></div>'
+                );
+            },
+            mapboxgl: mapboxgl
+        });
+        map.addControl(geocoder);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    content: '';
+    background: url(bg.jpg) no-repeat center center fixed;
+    z-index: -1;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    /*for center of webpage horizontly*/
+    align-items: center;
+    flex-direction: column;
+    min-height: 20vh;
+    height: 600px;
+    width: 450px;
+    position: absolute;
+    top: 10%;
+    left: 36%;
+    border-radius: 30px;
+    /* border: 1px solid black; */
+    box-shadow: 100px 100px 100px 100px rgba(255, 4, 4, 0.1);
+}
+
+.container h1 {
+    font-size: 40px;
+    margin-bottom: 60px;
+    opacity: 1000;
+    font-weight: bolder;
+    color: white;
+}
+
+.container .box {
+    width: 100%;
+}
+
+.container .box input {
+    width: 90%;
+    border: none;
+    outline: none;
+    color: white;
+    /* font-weight: bolder; */
+    border: 2px solid purple;
+    box-shadow: 10px 10px 10px black;
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+.container .box input::placeholder {
+    color: rgba(212, 98, 53, 0.87);
+    color: white;
+}
+
+.head h3 {
+    color: white;
+    font-weight: bolder;
+}
+
+#btn {
+    cursor: pointer;
+    outline: none;
+    width: 23%;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-top: 40px;
+    padding: 2px;
+    border-radius: 6px;
+    box-shadow: 100px 100px 100px 100px rgba(255, 4, 4, 0.1);
+    color: white;
+}
+
+.fa-envelope {
+    width: 100%;
+    /* size: 100px; */
+    color: rgb(250, 133, 23);
+    color: black;
+    opacity: 1000;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.fa-lock {
+    width: 100%;
+    /* size: 100px; */
+    color: rgb(250, 133, 23);
+    color: black;
+    opacity: 1000;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

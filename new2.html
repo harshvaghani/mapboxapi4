@@ -1,0 +1,409 @@
+<!-- css transform -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Transform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {}
+        
+        .container {
+            /* min-height: 100vh; */
+            background: linear-gradient(#256caa, #71a5d3 50%);
+            height: 100vh;
+            display: flex;
+            /* justify-content: center; */
+            /* align-items: center; */
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: start;
+            /*space between - no space in corner
+            space evenly - all spaces are same including starting to end
+            space around - spaces between allthe
+            */
+            align-items: center;
+        }
+        /* background: linear-grdient(#ffafbd, #ffc3a0 80%); */
+        
+        #box {
+            background: linear-gradient(#db7586, #ffc3a0 80%);
+            /* background: linear-gradient(#cc2b5e, #753a88); */
+            border: 1px solid black;
+            height: 140px;
+            margin-left: 12px;
+            width: 140px;
+            border-radius: 7px;
+            box-shadow: 10px 10px 100px 10px rgb(0, 0, 0, 0.2);
+            transition: all 0.3s linear;
+        }
+        
+        #box:hover {
+            transform: translate(2px, 2px);
+            color: #4078D3;
+            font-size: 18px;
+        }
+        
+        #box {
+            /* position: relative; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 22px;
+            font-family: 'Baloo Chettan 2', cursive;
+        }
+        
+        #box p:nth-child(2) {
+            /* display: none; */
+        }
+        
+        #more {
+            display: none;
+        }
+        /* /* #box:nth-child(1) {
+            flex-grow: 10;
+            /* background: red; */
+        /* color: white;
+    }
+    #box:nth-child(2) {
+        flex-grow: 9;
+    }
+    #box:nth-child(3) {
+        flex-grow: 8;
+    }
+    #box:nth-child(4) {
+        flex-grow: 7;
+    }
+    #box:nth-child(5) {
+        flex-grow: 6;
+    }  */
+        
+        @media only screen and (max-width: 500px) {
+            body {
+                background-color: red;
+            }
+            .container {
+                height: 500%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #box {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="info">
+    </div>
+    <div class="container">
+
+        <div id="box">
+            <p> SCET,surat</p>
+
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok1()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Mahavir Swami,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Bhagvan arihant
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Dharuka
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Vidhyadeep campus
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            ppsu
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box" class="box1" onclick="">
+            harsh
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            SCET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Mahavir Swami,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Bhagvan arihant
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Dharuka
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Vidhyadeep campus
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            ppsu
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box" class="box1" onclick="">
+            harsh
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            SCET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Mahavir Swami,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Bhagvan arihant
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Dharuka
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Vidhyadeep campus
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            ppsu
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box" class="box1" onclick="">
+            harsh
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            SCET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Mahavir Swami,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            SCET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            Mahavir Swami,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            C.K. pithavala
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            SCET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            BMET,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+        <div id="box">
+            PSE,surat
+            <p id="more"> <a href="more.html">more</a> </p>
+            <button id="btn" onclick="ok()">read more</button>
+
+        </div>
+
+    </div>
+</body>
+<script>
+    function ok() {
+        let content = document.getElementById('more');
+        if (content.style.display != "block") {
+            content.style.display = "block"
+        } else {
+            content.style.display = "none"
+        }
+    }
+
+    function ok1() {
+        let content = document.getElementById('more');
+        if (content.style.display != "block") {
+            content.style.display = "block"
+        } else {
+            content.style.display = "none"
+        }
+    }
+</script>
+
+</html>

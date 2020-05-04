@@ -1,0 +1,3 @@
+ 
+ for boxes 
+ <div class="container1"><div class="box1">  <i class="fa fa-users"></i> <div class="details">300<br>Intake</div> </div><div class="box2"><i class="fa fa-inr"></i> <div class="details1"> &#8377 67.000 <br>Fees for 2020</div></div></div>

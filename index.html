@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>College Information</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 96.2%;
+        }
+        
+        a {
+            color: grey;
+        }
+        
+        img {
+            display: block;
+            height: 67px;
+            width: 70px;
+            margin: auto;
+            /* opacity: 0.5; */
+            background-color: black;
+        }
+        
+        strong {
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-family: 'Quicksand', sans-serif;
+            justify-content: center;
+        }
+        
+        #harsh img {
+            display: block;
+            height: 67px;
+            width: 70px;
+            margin: auto;
+        }
+        
+        #harsh1 span {
+            color: #0091ae;
+        }
+        
+        #ok {
+            bottom: 0;
+            position: fixed;
+            background-color: #3b434c;
+            width: 100%;
+            height: 4%;
+            /* z-index: 1000; */
+            font-weight: 1000;
+        }
+        
+        #ok a {
+            color: rgb(185, 185, 141);
+            font-size: 12px;
+            font-family: 'Prata', serif;
+        }
+        
+        #ok a:hover {
+            color: #0091ae;
+        }
+        
+        #harsh1 {
+            /* background-color: black; */
+            color: black;
+        }
+        
+        #harsh2 {}
+        
+        .mapboxgl-popup-content #harsh1 {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #9bd1f5, #c9f8ff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: black;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 80vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+        }
+        
+        .mapboxgl-popup-content #harsh1 strong {
+            position: relative;
+            left: 2px;
+            top: 10px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        
+        .mapboxgl-popup-content #harsh1 img {
+            position: relative;
+            left: 2px;
+            top: 10px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        
+        .mapboxgl-popup-content #harsh1 span {
+            position: relative;
+        }
+        
+        .mapboxgl-popup-content #harsh1 p {
+            position: relative;
+        }
+        /* .mapboxgl-popup-content #harsh1:hover {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #9bd1f5, #c9f8ff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: rgb(199, 165, 165);
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 80vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+        } */
+        
+        .mapboxgl-popup-content #harsh1:before {
+            content: ' ';
+            position: absolute;
+            background: #fff;
+            background: linear-gradient(45deg, #9bd1f5, #c9f8ff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: rgb(199, 165, 165);
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 80vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+            top: 0;
+            left: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.8s;
+        }
+        
+        .mapboxgl-popup-content #harsh1:hover:before {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #d871bc, #c9f8ff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: rgb(199, 165, 165);
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 80vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+            transform: scaleY(1);
+            transform-origin: bottom;
+            transition: 0.8s;
+        }
+        
+        .mapboxgl-popup-content #harsh {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #e9c4ac, #d45912);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 80vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+        }
+        
+        .mapboxgl-popup-content #gtu {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, rgb(197, 190, 193), #ed55ff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 100vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+        }
+        
+        .mapboxgl-popup-content #ck {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #f05a4f, #64eaff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 50vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+        }
+        
+        .mapboxgl-popup-content #mahavir {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #ecb4b0, #64eaff);
+            /* background: linear-gradient(45deg, #03a9f4, #e91ee3); */
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: black;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 50vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+            transition: 0.5;
+        }
+        
+        .mapboxgl-popup-content #mahavir:hover {
+            position: fixed;
+            background: #fff;
+            background: linear-gradient(45deg, #ecb4b0, #64eaff);
+            border-radius: 10px;
+            padding: 20px 40px 40px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+            height: 50vh;
+            width: 300px;
+            padding: 10px 10px 15px;
+            pointer-events: auto;
+            top: 0;
+        }
+        
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+            /* -webkit-align-self: center; */
+            /* align-self: center; */
+            /* border-bottom: none; */
+            /* border-top-color: #fff; */
+        }
+        
+        .mapboxgl-popup {
+            position: absolute;
+            top: 0;
+            /* left: 0; */
+            /* display: -webkit-flex; */
+            /* display: flex; */
+            /* will-change: transform; */
+            pointer-events: none;
+        }
+        
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+            -webkit-align-self: center;
+            align-self: center;
+            border-bottom: none;
+            /* border-top-color: #fff; */
+        }
+        
+        .mapboxgl-popup-content {
+            /* position: relative; */
+            /* background: #fff; */
+            /* border-radius: 3px; */
+            /* box-shadow: 0 1px 2px rgba(0,0,0,.1); */
+            padding: 0px 0px 0px;
+            /* pointer-events: auto; */
+        }
+        
+        .mapboxgl-popup-content {
+            position: relative;
+            background: #fff;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            padding: 1px 7px -10px;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ok"><a href="mailto:harshvaghani02@gmail.com" class="font-green  bold">&nbsp;mail me : harshvaghani02@gmail.com</a></div>
+    <style>
+        /* .mapboxgl-popup {
+            /* max-width: 400px; */
+        /* width: 500px;
+            height: 10px;
+            /* background-color: black; */
+        /* height: 10vh; */
+        /* width: 100vw; */
+        /* display: fixed; */
+        /* box-shadow: 2px 4px 10px 0px black; */
+        /* font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif; */
+        /* font: 12px/20px 'Baloo Bhai 2', cursive; */
+        /* }
+    */
+    </style>
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyc2h2YWdoYW5pIiwiYSI6ImNrOWh5bDBwbTAydWQzb21ndWlrajE0aHgifQ.LOlWyyrPZGaSDXj7iKfPsg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            // center: [-77.04, 38.907],
+            // zoom: 11.15
+            zoom: 6,
+            center: [73, 22.45],
+        });
+
+        map.on('load', function() {
+            map.addSource('places', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': [{
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<div id="gtu"><img src="./gty.jpg" alt="Smiley face" ><strong>Gujarat Technology University</strong><p><h4>Phone no : 079 2326 7521</h4><a href="https://www.gtu.ac.in/" target="_blank" title="Opens in a new window">Website</a><br><a href="gtu.html" target="_blank">INFORMATION ABOUT GTU</a><br>Gujarat Technological University (International Innovative University), commonly referred as GTU, is a state university,Gujarat Technological University was established in 2007 by the Government of Gujarat via Gujarat Act No. 20 of 2007GTU is a state university with 486 affiliated colleges in its fold operating across the state of Gujarat through its five zones at Ahmedabad, Gandhinagar, Vallabh Vidyanagar, Rajkot and Surat. The University caters to the fields of Engineering, Architecture, Management, Pharmacy and Computer Science.Earlier, Gujarat University was the prime university of Gujarat state heading all colleges including technical colleges. </p></div>',
+                                'icon': 'shop'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [72.593730, 23.106150]
+                            }
+                        },
+
+                        {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a <a href="http://madmens5finale.eventbrite.com/" target="_blank" title="Opens in a new window">Mad Men Season Five Finale Watch Party</a>, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. $10 general admission, $20 admission and two hour open bar.</p>',
+                                'icon': 'theatre'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.003168, 38.894651]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Big Backyard Beach Bash and Wine Fest</strong><p>EatBar (2761 Washington Boulevard Arlington VA) is throwing a <a href="http://tallulaeatbar.ticketleap.com/2012beachblanket/" target="_blank" title="Opens in a new window">Big Backyard Beach Bash and Wine Fest</a> on Saturday, serving up conch fritters, fish tacos and crab sliders, and Red Apron hot dogs. 12:00-3:00 p.m. $25.grill hot dogs.</p>',
+                                'icon': 'bar'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.090372, 38.881189]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Ballston Arts & Crafts Market</strong><p>The <a href="http://ballstonarts-craftsmarket.blogspot.com/" target="_blank" title="Opens in a new window">Ballston Arts & Crafts Market</a> sets up shop next to the Ballston metro this Saturday for the first of five dates this summer. Nearly 35 artists and crafters will be on hand selling their wares. 10:00-4:00 p.m.</p>',
+                                'icon': 'art-gallery'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.111561, 38.882342]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Seersucker Bike Ride and Social</strong><p>Feeling dandy? Get fancy, grab your bike, and take part in this year\'s <a href="http://dandiesandquaintrelles.com/2012/04/the-seersucker-social-is-set-for-june-9th-save-the-date-and-start-planning-your-look/" target="_blank" title="Opens in a new window">Seersucker Social</a> bike ride from Dandies and Quaintrelles. After the ride enjoy a lawn party at Hillwood with jazz, cocktails, paper hat-making, and more. 11:00-7:00 p.m.</p>',
+                                'icon': 'bicycle'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.052477, 38.943951]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Capital Pride Parade</strong><p>The annual <a href="http://www.capitalpride.org/parade" target="_blank" title="Opens in a new window">Capital Pride Parade</a> makes its way through Dupont this Saturday. 4:30 p.m. Free.</p>',
+                                'icon': 'rocket'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.043444, 38.909664]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Muhsinah</strong><p>Jazz-influenced hip hop artist <a href="http://www.muhsinah.com" target="_blank" title="Opens in a new window">Muhsinah</a> plays the <a href="http://www.blackcatdc.com">Black Cat</a> (1811 14th Street NW) tonight with <a href="http://www.exitclov.com" target="_blank" title="Opens in a new window">Exit Clov</a> and <a href="http://godsilla.bandcamp.com" target="_blank" title="Opens in a new window">Gods’illa</a>. 9:00 p.m. $12.</p>',
+                                'icon': 'music'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.031706, 38.914581]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>A Little Night Music</strong><p>The Arlington Players\' production of Stephen Sondheim\'s  <a href="http://www.thearlingtonplayers.org/drupal-6.20/node/4661/show" target="_blank" title="Opens in a new window"><em>A Little Night Music</em></a> comes to the Kogod Cradle at The Mead Center for American Theater (1101 6th Street SW) this weekend and next. 8:00 p.m.</p>',
+                                'icon': 'music'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.020945, 38.878241]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': '<strong>Truckeroo</strong><p><a href="http://www.truckeroodc.com/www/" target="_blank">Truckeroo</a> brings dozens of food trucks, live music, and games to half and M Street SE (across from Navy Yard Metro Station) today from 11:00 a.m. to 11:00 p.m.</p>',
+                                'icon': 'music'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [-77.007481, 38.876516]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': ' <div id = "harsh"><img src = "./scet.jpg" alt = "nothing"><strong> Sarvajanik College of Engineering & Technology.</strong><p><a href="https://scet.ac.in/" target="_blank">Checkout Website</a><br> <a href="scet.html" target="_blank">IMFORMATION ABOUT SCET</a> <p>Sarvajanik College of Engineering and Technology is one of the prime Institutions offering technical education in field of Engineering & MCA. Both the courses are affiliated with the Gujarat Technological University, Chandkheda approved by AICTE, New Delh and known as one of the oldest Engineering college of surat.</p> </div>',
+                                'icon': 'school'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [72.808774, 21.182169]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': ' <div id = "harsh1"><img src = "./pse.png" alt = "nothing"><strong> Pacific school  of Engineering & Technology.</strong><p><a href="https://scet.ac.in/" target="_blank">Checkout Website</a><br> <a href="scet.html" target="_blank">IMFORMATION ABOUT PSE</a><br><a>Phone : +919904408835, 9904408838</a> <p> <span>Pacific school of Engineering and Technology</span> Pacific School of Engineering (PSE) is located at the center of Surat, Navsari and Bardoli towns and commenced education in Degree and Diploma Since 2012. The Institute is approved by AICTE and affiliated to GTU. The campus is well connected by a fleet of buses to all parts of the city. The classrooms are theatre style with audio-visual facility. The class room coaching is augmented with industrial tours, lectures by eminent industrials experts, tech-fests and cultural and sports activities. PSE thus provides for all round development of engineering students.</p> </div>',
+                                'icon': 'school'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [72.980609, 21.145151]
+                            }
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': ' <div id = "ck"><img src = "./ck.png" alt = "nothing"><strong> C.K. Pithawala College of Engineering and Technology </strong><p><a href="https://scet.ac.in/" target="_blank">Checkout Website</a><br> <a href="scet.html" target="_blank">IMFORMATION ABOUT PSE</a><br><a>Phone : +919904408835, 9904408838</a> <p> <span>C.K. Pithawala College of Engineering and Technology of Engineering and Technology</span> C. K. Pithawala College of Engineering and Technology is a self financed Institute which started its functioning in December, 1998 affiliated first with Veer Narmad South Gujarat University, Surat and now with Gujarat Technological University, Ahmedabad..</p> </div>',
+                                'icon': 'school'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [72.718008, 21.132199]
+                            },
+                        }, {
+                            'type': 'Feature',
+                            'properties': {
+                                'description': ' <div id = "mahavir"><img src = "./mahavir.png" alt = "nothing"><strong> Bhagvan Mahavir college of Engineering </strong><p><a href="https://scet.ac.in/" target="_blank">Checkout Website</a><br> <a href="scet.html" target="_blank">IMFORMATION ABOUT PSE</a><br><a>Phone : +919904408835, 9904408838</a> <p> <span>C.K. Pithawala College of Engineering and Technology of Engineering and Technology</span> C. K. Pithawala College of Engineering and Technology is a self financed Institute which started its functioning in December, 1998 affiliated first with Veer Narmad South Gujarat University, Surat and now with Gujarat Technological University, Ahmedabad..</p> </div>',
+                                'icon': 'school'
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': [72.793420, 21.138901]
+                            },
+
+                        }
+                    ]
+                }
+            });
+            // Add a layer showing the places.
+            map.addLayer({
+                'id': 'places',
+                'type': 'symbol',
+                'source': 'places',
+                'layout': {
+                    'icon-image': '{icon}-15',
+                    'icon-allow-overlap': true
+                }
+            });
+
+            // When a click event occurs on a feature in the places layer, open a popup at the
+            // location of the feature, with description HTML from its properties.
+            map.on('click', 'places', function(e) {
+                var coordinates = e.features[0].geometry.coordinates.slice();
+                var description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+            });
+
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'places', function() {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'places', function() {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

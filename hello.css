@@ -1,0 +1,188 @@
+ #gtu {
+     position: fixed;
+     background: #fff;
+     background: linear-gradient(60deg, #eecda3, #ef629f);
+     border-radius: 10px;
+     padding: 20px 40px 40px;
+     color: white;
+     overflow: hidden;
+     box-shadow: 2px 4px 2px 4px rgba(0, 0, 0, .5);
+     height: 90vh;
+     width: 700px;
+     padding: 10px 10px 15px;
+     pointer-events: auto;
+     content: '';
+     position: absolute;
+ }
+ /* gtu boxs css */
+ 
+ .container1gtu {
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+     padding: 12px;
+ }
+ 
+ .box1gtu {
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     flex-direction: row;
+     /* display: block; */
+     background: linear-gradient(45deg, #614385, #c0c0c0);
+     border-radius: 12px;
+     width: 25%;
+     position: relative;
+     font-size: 20px;
+     font-family: 'Montserrat', sans-serif;
+     height: 9vh;
+     font-family: 'Baloo 2', cursive;
+     box-shadow: 10px 10px 3px rgb(0, 0, 0, 0.1);
+     margin-right: 0px;
+     margin-bottom: 9px;
+     margin-right: 5px;
+ }
+ 
+ .box1gtu i {
+     color: #FFFFFF;
+     opacity: 0.4;
+     font-size: 30px;
+     margin-top: -2px;
+     float: left;
+     margin-left: 7px;
+ }
+ 
+ .box1gtu .details {
+     padding: 10px;
+     position: relative;
+     float: right;
+     margin-top: 4px;
+ }
+ 
+ .box2gtu {
+     /* float: right; */
+     /* position: relative; */
+     /* top: 0; */
+     right: 10;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     flex-direction: row;
+     /* display: block; */
+     background-color: rgb(163, 54, 163);
+     background: linear-gradient(45deg, #eacda3, #d6ae7b);
+     border-radius: 12px;
+     width: 25%;
+     position: relative;
+     font-size: 18px;
+     font-family: 'Montserrat', sans-serif;
+     font-family: 'Baloo 2', cursive;
+     height: 9vh;
+     margin-bottom: 9px;
+     /* border: 2px solid black; */
+     box-shadow: 10px 10px 3px rgb(0, 0, 0, 0.1);
+     margin-right: 5px;
+ }
+ 
+ .box2gtu .details1 {
+     padding: 10px;
+     position: relative;
+     float: right;
+     margin-top: 4px;
+     margin-left: 11px;
+ }
+ 
+ .box2gtu i {
+     color: #FFFFFF;
+     opacity: 0.4;
+     font-size: 30px;
+     margin-top: 1px;
+     float: left;
+     margin-left: 14px;
+ }
+ 
+ .box3gtu {
+     /* float: right; */
+     /* position: relative; */
+     /* top: 0; */
+     right: 10;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     flex-direction: row;
+     display: block;
+     background-color: rgb(163, 54, 163);
+     border-radius: 12px;
+     width: 25%;
+     position: relative;
+     /* display: block; */
+     font-size: 18px;
+     font-family: 'Montserrat', sans-serif;
+     font-family: 'Baloo 2', cursive;
+     height: 9vh;
+     margin-bottom: 9px;
+     background: linear-gradient(45deg, #FF9CDA, #EA4492);
+     /* border: 2px solid black; */
+     box-shadow: 10px 10px 3px rgb(0, 0, 0, 0.1);
+     margin-right: 5px;
+ }
+ 
+ .box3gtu .details1 {
+     padding: 10px;
+     position: relative;
+     float: right;
+     margin-top: 6px;
+     margin-left: 11px;
+     /* font-size: 16px; */
+ }
+ 
+ .box3gtu i {
+     color: #FFFFFF;
+     opacity: 0.4;
+     font-size: 30px;
+     margin-top: 19px;
+     float: left;
+     margin-left: 14px;
+ }
+ 
+ .box4gtu {
+     /* float: right; */
+     /* position: relative; */
+     /* top: 0; */
+     right: 10;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     flex-direction: row;
+     /* display: block; */
+     background-color: rgb(163, 54, 163);
+     border-radius: 12px;
+     width: 25%;
+     position: relative;
+     font-size: 18px;
+     font-family: 'Montserrat', sans-serif;
+     font-family: 'Baloo 2', cursive;
+     height: 9vh;
+     margin-bottom: 9px;
+     background: linear-gradient(45deg, #6aab9c, #94b0b7);
+     /* border: 2px solid black; */
+     box-shadow: 10px 10px 3px rgb(0, 0, 0, 0.1);
+     margin-right: 5px;
+ }
+ 
+ .box4gtu .details1 {
+     padding: 10px;
+     position: relative;
+     float: right;
+     margin-top: 6px;
+     margin-left: 11px;
+ }
+ 
+ .box4gtu i {
+     color: #FFFFFF;
+     opacity: 0.4;
+     font-size: 30px;
+     margin-top: 2px;
+     float: left;
+     margin-left: 14px;
+ }

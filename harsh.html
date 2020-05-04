@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>College Information</title>
+    <!-- /font awesome -->
+    <script src="https://kit.fontawesome.com/575f839daa.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet"> >
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <!--link of direction -->
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>-->
+    <!-- <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css" type="text/css" />-->
+    <!-- main css -->
+    <link rel="stylesheet" href="project.css">
+    <!-- gtu css -->
+    <link rel="stylesheet" href="gtu.css">
+    <!-- veer narmad css -->
+    <link rel="stylesheet" href="vnsgu.css">
+    <style>
+        .GeolocateControl {
+            background-color: red;
+        }
+        
+        .mapboxgl-ctrl-bottom-right {
+            bottom: 0;
+            left: 0;
+            display: none;
+        }
+        
+        .mapboxgl-ctrl-bottom-left {
+            bottom: 0;
+            left: 0;
+            display: none;
+        }
+        
+        element.style {}
+        /* .mapboxgl-popup {
+            /* max-width: 400px; */
+        /* width: 500px;
+            height: 10px;
+            /* background-color: black; */
+        /* height: 10vh; */
+        /* width: 100vw; */
+        /* display: fixed; */
+        /* box-shadow: 2px 4px 10px 0px black; */
+        /* font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif; */
+        /* font: 12px/20px 'Baloo Bhai 2', cursive; */
+        /* }
+    */
+        
+        .geocoder-dropdown-item {
+            padding: 100px;
+        }
+        
+        .geocoder-dropdown-icon {
+            margin-right: 10px;
+        }
+        
+        .geocoder-dropdown-text {
+            color: #5a3fc0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+        
+        #geocoder-container>div {
+            min-width: 100%;
+            margin-left: 25%;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div id="ok"><a href="mailto:harshvaghani02@gmail.com" class="font-green  bold">&nbsp;mail me : harshvaghani02@gmail.com</a></div>
+    <div id="map"></div>
+    <!-- <div id="menu">
+        <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
+        <label for="streets">streets</label>
+        <input id="light-v10" type="radio" name="rtoggle" value="light" />
+        <label for="light">light</label>
+        <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+        <label for="dark">dark</label>
+        <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" />
+        <label for="outdoors">outdoors</label>
+        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />
+        <label for="satellite">satellite</label>
+    </div> -->
+</body>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyc2h2YWdoYW5pIiwiYSI6ImNrOWh5bDBwbTAydWQzb21ndWlrajE0aHgifQ.LOlWyyrPZGaSDXj7iKfPsg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/outdoors-v11',
+        zoom: 6.5,
+        center: [73.1056243, 22.221618]
+
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        })
+    );
+    // map.addControl(geocoder);
+    // // Add zoom and rotation controls to the map.
+    // map.addControl(new mapboxgl.NavigationControl());
+    //map box direction
+    // map.addControl(
+    //     new MapboxDirections({
+    //         accessToken: mapboxgl.accessToken
+    //     }),
+    //     'bottom-left'
+    // );
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: forwardGeocoder,
+            zoom: 14,
+            placeholder: 'Enter search e.g. Lincoln Park',
+            mapboxgl: mapboxgl
+        })
+    );
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        marker: {
+            color: 'orange'
+        },
+        mapboxgl: mapboxgl
+    });
+
+    //data for searching tools
+    var customData = {
+        'features': [{
+            'type': 'Feature',
+            'properties': {
+                'title': 'Gujarat technology university',
+                'description': 'A northside park that is home to the Lincoln Park Zoo'
+            },
+            'geometry': {
+                'coordinates': [72.593730, 23.106150],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Pacific School Of engineering',
+                'description': "A lakefront park on Chicago's south side"
+            },
+            'geometry': {
+                'coordinates': [72.980609, 21.145151],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Sarvajanik college Of engineering and technology',
+                'description': "A lakefront park on Chicago's south side"
+            },
+            'geometry': {
+                'coordinates': [72.808774, 21.182169],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'C.K. Pithawala college Of engineering and technology',
+                'description': "A lakefront park on Chicago's south side"
+            },
+            'geometry': {
+                'coordinates': [72.718008, 21.132199],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Bhagvan Mahavir college Of engineering and technology, Surat',
+                'description': "A lakefront park on Chicago's south side"
+            },
+            'geometry': {
+                'coordinates': [72.793420, 21.138901],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Surat',
+                'description': "A lakefront park on Chicago's south side"
+            },
+            'geometry': {
+                'coordinates': [72.828130, 21.169111],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': ' Bhagwan Arihant Institute of Technology, Surat',
+                'description': 'A downtown park known for its art installations and unique architecture'
+            },
+            'geometry': {
+                'coordinates': [72.793976, 21.137963],
+
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Grant Park',
+                'description': "A downtown park that is the site of many of Chicago's favorite festivals and events"
+            },
+            'geometry': {
+                'coordinates': [-87.619185, 41.876367],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Humboldt Park',
+                'description': "A large park on Chicago's northwest side"
+            },
+            'geometry': {
+                'coordinates': [-87.70199, 41.905423],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Douglas Park',
+                'description': "A large park near in Chicago's North Lawndale neighborhood"
+            },
+            'geometry': {
+                'coordinates': [-87.699329, 41.860092],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Calumet Park',
+                'description': 'A park on the Illinois-Indiana border featuring a historic fieldhouse'
+            },
+            'geometry': {
+                'coordinates': [-87.530221, 41.715515],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Jackson Park',
+                'description': "A lakeside park that was the site of the 1893 World's Fair"
+            },
+            'geometry': {
+                'coordinates': [-87.580389, 41.783185],
+                'type': 'Point'
+            }
+        }, {
+            'type': 'Feature',
+            'properties': {
+                'title': 'Columbus Park',
+                'description': "A large park in Chicago's Austin neighborhood"
+            },
+            'geometry': {
+                'coordinates': [-87.769775, 41.873683],
+                'type': 'Point'
+            }
+        }],
+        'type': 'FeatureCollection'
+    };
+
+    function forwardGeocoder(query) {
+        var matchingFeatures = [];
+        for (var i = 0; i < customData.features.length; i++) {
+            var feature = customData.features[i];
+            // handle queries with different capitalization than the source data by calling toLowerCase()
+            if (
+                feature.properties.title
+                .toLowerCase()
+                .search(query.toLowerCase()) !== -1
+            ) {
+                // add a tree emoji as a prefix for custom data results
+                // using carmen geojson format: https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+                feature['place_name'] = 'Search : ' + feature.properties.title;
+                feature['center'] = feature.geometry.coordinates;
+                feature['place_type'] = ['park'];
+                matchingFeatures.push(feature);
+            }
+        }
+        return matchingFeatures;
+    }
+</script>
+<script src="project.js"></script>
+
+</html>
